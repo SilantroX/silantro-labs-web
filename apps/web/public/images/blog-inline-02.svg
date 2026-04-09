@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="360" viewBox="0 0 800 360">
+  <rect width="800" height="360" fill="#A4D8FF" rx="12"/>
+  <rect x="60" y="40" width="300" height="280" rx="14" fill="#35393C" opacity="0.06"/>
+  <text x="80" y="70" fill="#35393C" font-family="monospace" font-size="11" opacity="0.5">Figma</text>
+  <rect x="80" y="85" width="260" height="30" rx="6" fill="#35393C" opacity="0.08"/>
+  <rect x="90" y="93" width="80" height="14" rx="4" fill="#35393C" opacity="0.12"/>
+  <rect x="180" y="93" width="60" height="14" rx="4" fill="#35393C" opacity="0.08"/>
+  <rect x="80" y="130" width="120" height="120" rx="8" fill="#35393C" opacity="0.06"/>
+  <rect x="95" y="145" width="90" height="10" rx="3" fill="#35393C" opacity="0.12"/>
+  <rect x="95" y="165" width="70" height="30" rx="6" fill="#35393C" opacity="0.08"/>
+  <rect x="210" y="130" width="120" height="55" rx="8" fill="#35393C" opacity="0.06"/>
+  <rect x="210" y="195" width="120" height="55" rx="8" fill="#35393C" opacity="0.06"/>
+  <path d="M390 180 L410 180 M400 170 L410 180 L400 190" stroke="#35393C" stroke-opacity="0.3" stroke-width="2" fill="none"/>
+  <rect x="440" y="40" width="300" height="280" rx="14" fill="#35393C" opacity="0.06"/>
+  <text x="460" y="70" fill="#35393C" font-family="monospace" font-size="11" opacity="0.5">Code</text>
+  <rect x="460" y="85" width="260" height="200" rx="8" fill="#35393C" opacity="0.05"/>
+  <text x="475" y="108" fill="#35393C" font-family="monospace" font-size="10" opacity="0.35">&lt;Button</text>
+  <text x="490" y="124" fill="#35393C" font-family="monospace" font-size="10" opacity="0.35">variant="primary"</text>
+  <text x="490" y="140" fill="#35393C" font-family="monospace" font-size="10" opacity="0.35">size="md"</text>
+  <text x="475" y="156" fill="#35393C" font-family="monospace" font-size="10" opacity="0.35">&gt;</text>
+  <text x="490" y="172" fill="#35393C" font-family="monospace" font-size="10" opacity="0.35">Click me</text>
+  <text x="475" y="188" fill="#35393C" font-family="monospace" font-size="10" opacity="0.35">&lt;/Button&gt;</text>
+  <text x="400" y="345" fill="#35393C" font-family="system-ui" font-size="12" text-anchor="middle" opacity="0.3">Design-to-Code Component Mapping</text>
+</svg>

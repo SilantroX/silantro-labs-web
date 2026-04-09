@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#A4D8FF"/>
+  <rect x="100" y="80" width="600" height="440" rx="20" fill="#35393C" opacity="0.08"/>
+  <rect x="140" y="120" width="120" height="120" rx="12" fill="#35393C" opacity="0.1"/>
+  <rect x="280" y="120" width="120" height="120" rx="12" fill="#35393C" opacity="0.1"/>
+  <rect x="420" y="120" width="120" height="120" rx="12" fill="#35393C" opacity="0.1"/>
+  <rect x="560" y="120" width="100" height="120" rx="12" fill="#35393C" opacity="0.1"/>
+  <rect x="140" y="260" width="520" height="16" rx="4" fill="#35393C" opacity="0.12"/>
+  <rect x="140" y="292" width="400" height="12" rx="4" fill="#35393C" opacity="0.08"/>
+  <rect x="140" y="320" width="520" height="160" rx="12" fill="#35393C" opacity="0.06"/>
+  <text x="400" y="560" fill="#35393C" font-family="system-ui" font-size="16" text-anchor="middle" opacity="0.4">Project Screenshot</text>
+</svg>

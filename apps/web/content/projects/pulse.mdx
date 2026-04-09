@@ -1,0 +1,53 @@
+---
+title: "Pulse — Design System"
+description: "A scalable design system for a fintech startup, ensuring consistency across 12 product surfaces."
+tags: ["Design System", "UI", "Development"]
+image: "/images/project-04.svg"
+role: "Design System Lead"
+year: "2024"
+url: "https://example.com/pulse"
+---
+
+## Overview
+
+Pulse is a design system I built for a fintech startup that had grown from 1 product to 12 surfaces (web app, mobile app, marketing site, internal tools, email templates, and more) with a team of 8 designers and 15 engineers.
+
+## The Problem
+
+Without a shared system, the same component existed in multiple versions across the codebase. A "primary button" had 6 different implementations with subtle differences in padding, font weight, and border radius. Every new surface meant rebuilding from scratch.
+
+## Approach
+
+### Audit first
+
+I cataloged every unique component instance across all 12 surfaces. The result: 340+ unique component variants that could be consolidated into 45 core components.
+
+### Token architecture
+
+Built the foundation on design tokens organized in three tiers:
+
+- **Global tokens** — raw values (colors, spacing scale, type scale)
+- **Semantic tokens** — purpose-driven aliases (background-primary, text-muted, spacing-card-padding)
+- **Component tokens** — scoped to specific components (button-padding-x, input-border-color)
+
+This three-tier approach meant we could theme entire surfaces by swapping semantic tokens without touching component code.
+
+### Component library
+
+Built in React with TypeScript, documented in Storybook. Every component included:
+
+- Props API documentation
+- Usage guidelines with do/don't examples
+- Accessibility annotations (ARIA roles, keyboard behavior)
+- Figma component linked to code component
+
+### Governance
+
+Set up a contribution model: anyone could propose a new component or modification via a lightweight RFC template. Monthly design system syncs to review proposals and plan releases.
+
+## Impact
+
+- Component build time: reduced from ~4 hours to ~30 minutes (reuse existing primitives)
+- Design-to-dev handoff time: -50%
+- Visual inconsistencies across surfaces: reduced by ~90%
+- Onboarding time for new designers/developers: cut in half
