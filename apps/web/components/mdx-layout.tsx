@@ -17,7 +17,7 @@ export function MdxLayout({
       >
         &larr; {backLabel}
       </Link>
-      <article className="glass rounded-2xl p-8 shadow-lg shadow-black/5 md:p-12">
+      <article className="rounded-3xl bg-white p-8 shadow-2xl shadow-black/5 md:p-12 border border-black/10 relative z-10">
         {children}
       </article>
     </div>

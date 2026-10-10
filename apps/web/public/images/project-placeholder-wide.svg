@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#fcfcfc"/>
+  <rect x="40" y="40" width="720" height="520" fill="none" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="40" y1="40" x2="760" y2="560" stroke="#f0f0f0" stroke-width="2"/>
+  <line x1="760" y1="40" x2="40" y2="560" stroke="#f0f0f0" stroke-width="2"/>
+  <text x="400" y="300" fill="#aaaaaa" font-family="system-ui" font-size="14" font-weight="300" text-anchor="middle" letter-spacing="4">PROJECT ALPHA</text>
+</svg>
