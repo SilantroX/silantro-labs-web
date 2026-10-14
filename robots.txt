@@ -1,0 +1,16 @@
+User-Agent: *
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+
+Sitemap: https://silantrolabs.com/sitemap.xml
