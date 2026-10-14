@@ -3,7 +3,15 @@ import { getAllPosts } from "@/lib/mdx"
 
 export const metadata = {
   title: "Artículos — SILANTRO LABS",
-  description: "Notas, ideas y reflexiones sobre diseño, tecnología y nuestros experimentos.",
+  description: "Notas, ideas y reflexiones sobre diseño, tecnología, programación y experimentos en SILANTRO LABS.",
+  alternates: {
+    canonical: "https://silantrolabs.com/articulos/",
+  },
+  openGraph: {
+    title: "Artículos — SILANTRO LABS",
+    description: "Notas, ideas y reflexiones sobre diseño, tecnología, programación y experimentos en SILANTRO LABS.",
+    url: "https://silantrolabs.com/articulos/",
+  },
 }
 
 function formatDate(dateStr: string) {

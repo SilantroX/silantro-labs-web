@@ -16,9 +16,29 @@ export async function generateMetadata({
   const { slug } = await params
   try {
     const post = getPost(slug)
+    const title = `${post.meta.title} — SILANTRO LABS`
+    const description = post.meta.excerpt || "Publicación oficial de SILANTRO LABS"
+    const canonicalUrl = `https://silantrolabs.com/articulos/${slug}/`
+
     return {
-      title: `${post.meta.title} — SILANTRO LABS`,
-      description: post.meta.excerpt || "Publicación oficial de SILANTRO LABS",
+      title,
+      description,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+      openGraph: {
+        title,
+        description,
+        url: canonicalUrl,
+        type: "article",
+        publishedTime: String(post.meta.date),
+        authors: ["Silantro"],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+      },
     }
   } catch {
     return { title: "Artículo no encontrado — SILANTRO LABS" }
@@ -64,8 +84,38 @@ export default async function ArticuloSlugPage({
   // If the markdown content includes a leading '# Title', strip it to prevent duplicate heading
   const cleanContent = post.content.replace(/^#\s+[^\n]+\n+/, "")
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.meta.title,
+    description: post.meta.excerpt || "Publicación oficial de SILANTRO LABS",
+    datePublished: String(post.meta.date),
+    author: {
+      "@type": "Person",
+      name: "Silantro",
+      url: "https://silantrolabs.com/",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "SILANTRO LABS",
+      url: "https://silantrolabs.com/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://silantrolabs.com/logo.jpg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://silantrolabs.com/articulos/${slug}/`,
+    },
+  }
+
   return (
     <div className="mx-auto max-w-3xl px-4 pb-24 pt-28 sm:pt-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <Link
         href="/articulos"
         className="group mb-8 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"

@@ -15,9 +15,27 @@ export async function generateMetadata({
   const project = portfolio.projects.find((p) => p.slug === slug)
   if (!project) return { title: "Proyecto no encontrado — SILANTRO LABS" }
 
+  const title = `${project.title} — Proyectos SILANTRO LABS`
+  const description = project.shortDescription
+  const canonicalUrl = `https://silantrolabs.com/proyectos/${slug}/`
+
   return {
-    title: `${project.title} — Proyectos SILANTRO LABS`,
-    description: project.shortDescription,
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   }
 }
 
@@ -151,8 +169,32 @@ export default async function ProyectoSlugPage({
     notFound()
   }
 
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: project.title,
+    description: project.shortDescription,
+    programmingLanguage: project.tags.join(", "),
+    codeRepository: project.githubUrl || undefined,
+    author: {
+      "@type": "Person",
+      name: "Silantro",
+      url: "https://silantrolabs.com/",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "SILANTRO LABS",
+      url: "https://silantrolabs.com/",
+    },
+    url: `https://silantrolabs.com/proyectos/${slug}/`,
+  }
+
   return (
     <div className="mx-auto max-w-3xl px-4 pb-20 pt-28 sm:pt-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+      />
       {/* Back button */}
       <div className="mb-8">
         <Link

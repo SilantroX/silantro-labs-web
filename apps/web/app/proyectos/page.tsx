@@ -5,6 +5,15 @@ export const metadata = {
   title: "Proyectos — SILANTRO LABS",
   description:
     "Proyectos de programación, series de desarrollo en Python, experimentos y código de SILANTRO LABS.",
+  alternates: {
+    canonical: "https://silantrolabs.com/proyectos/",
+  },
+  openGraph: {
+    title: "Proyectos — SILANTRO LABS",
+    description:
+      "Proyectos de programación, series de desarrollo en Python, experimentos y código de SILANTRO LABS.",
+    url: "https://silantrolabs.com/proyectos/",
+  },
 }
 
 function GithubIcon({ className }: { className?: string }) {

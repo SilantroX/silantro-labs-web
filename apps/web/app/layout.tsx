@@ -1,4 +1,6 @@
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
+import Script from "next/script"
 
 import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -9,20 +11,79 @@ import { cn } from "@workspace/ui/lib/utils"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
-export const metadata = {
-  title: "SILANTRO LABS",
-  description: "Construimos cosas. Productos digitales, software e ideas.",
-  authors: [{ name: "SILANTRO LABS", url: "https://silantrolabs.com" }],
-  creator: "SILANTRO LABS",
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+}
+
+const BASE_URL = "https://silantrolabs.com"
+
+export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "SILANTRO LABS — Software, Proyectos & Laboratorio de Programación",
+    template: "%s — SILANTRO LABS",
+  },
+  description:
+    "SILANTRO LABS es un laboratorio de desarrollo de software, productos digitales y experimentos de programación creado por Silantro. Código abierto, arquitectura y tutoriales.",
+  applicationName: "SILANTRO LABS",
+  authors: [{ name: "Silantro", url: BASE_URL }],
+  generator: "Next.js",
+  keywords: [
+    "Silantro",
+    "Silantro Labs",
+    "SilantroLabs",
+    "Silantro programación",
+    "Silantro software",
+    "Silantro bot discord",
+    "laboratorio de software",
+    "desarrollo web",
+    "programación en python",
+    "ingeniería de software",
+    "proyectos open source",
+    "desarrollador de software",
+  ],
+  creator: "Silantro",
+  publisher: "SILANTRO LABS",
+  alternates: {
+    canonical: `${BASE_URL}/`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "SILANTRO LABS",
-    description: "Construimos cosas. Productos digitales, software e ideas.",
+    title: "SILANTRO LABS — Software, Proyectos & Laboratorio de Programación",
+    description:
+      "Laboratorio de desarrollo de software, productos digitales y experimentos de programación creado por Silantro.",
+    url: `${BASE_URL}/`,
+    siteName: "SILANTRO LABS",
+    images: [
+      {
+        url: "/logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SILANTRO LABS — Software & Laboratorio de Programación",
+      },
+    ],
+    locale: "es_ES",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SILANTRO LABS",
-    description: "Construimos cosas. Productos digitales, software e ideas.",
+    title: "SILANTRO LABS — Software, Proyectos & Laboratorio de Programación",
+    description:
+      "Laboratorio de desarrollo de software, productos digitales y experimentos de programación creado por Silantro.",
+    images: ["/logo.jpg"],
+    creator: "@silantrolabs",
   },
   icons: {
     icon: [
@@ -35,6 +96,57 @@ export const metadata = {
     ],
     shortcut: "/favicon.ico",
   },
+  manifest: "/manifest.json",
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      "url": `${BASE_URL}/`,
+      "name": "SILANTRO LABS",
+      "alternateName": ["Silantro", "SilantroLabs", "Silantro Labs Software"],
+      "description":
+        "Laboratorio de desarrollo de software, productos digitales y experimentos de programación creado por Silantro.",
+      "inLanguage": "es-ES",
+      "publisher": {
+        "@id": `${BASE_URL}/#organization`,
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
+      "name": "SILANTRO LABS",
+      "alternateName": ["Silantro", "SilantroLabs"],
+      "url": `${BASE_URL}/`,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/logo.jpg`,
+      },
+      "image": `${BASE_URL}/logo.jpg`,
+      "founder": {
+        "@id": `${BASE_URL}/#founder`,
+      },
+      "sameAs": [
+        "https://github.com/SilantroX",
+        "https://www.youtube.com/@SilantroLabs",
+        "https://www.tiktok.com/@silantrolabs",
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": `${BASE_URL}/#founder`,
+      "name": "Silantro",
+      "alternateName": ["SilantroX", "Silantro Labs"],
+      "jobTitle": "Creador & Desarrollador de Software",
+      "url": `${BASE_URL}/`,
+      "sameAs": [
+        "https://github.com/SilantroX",
+      ],
+    },
+  ],
 }
 
 export default function RootLayout({
@@ -48,6 +160,12 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased scroll-smooth", inter.variable, "font-sans")}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="relative flex min-h-svh flex-col bg-white text-black dark:bg-white dark:text-black transition-colors duration-300">
         <ThemeProvider>
           <AmbientParticles />
