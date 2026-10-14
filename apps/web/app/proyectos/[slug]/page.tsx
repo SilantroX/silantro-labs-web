@@ -31,7 +31,7 @@ function GithubIcon({ className }: { className?: string }) {
 
 function DiagramIcon({ className }: { className?: string }) {
   return (
-    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <rect x="3" y="3" width="7" height="7" rx="1" />
       <rect x="14" y="3" width="7" height="7" rx="1" />
       <rect x="14" y="14" width="7" height="7" rx="1" />
@@ -42,6 +42,85 @@ function DiagramIcon({ className }: { className?: string }) {
       <path d="M10 17.5h4" />
     </svg>
   )
+}
+
+function ShieldIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  )
+}
+
+function TicketIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+      <path d="M13 5v2" />
+      <path d="M13 11v2" />
+      <path d="M13 17v2" />
+    </svg>
+  )
+}
+
+function LightbulbIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+      <path d="M9 18h6" />
+      <path d="M10 22h4" />
+    </svg>
+  )
+}
+
+function UsersIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  )
+}
+
+function MegaphoneIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="m3 11 18-5v12L3 14v-3z" />
+      <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+    </svg>
+  )
+}
+
+function RefreshIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
+      <path d="M21 3v5h-5" />
+      <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
+      <path d="M3 21v-5h5" />
+    </svg>
+  )
+}
+
+function ModuleIcon({ name, className }: { name: string; className?: string }) {
+  switch (name) {
+    case "shield":
+      return <ShieldIcon className={className} />
+    case "ticket":
+      return <TicketIcon className={className} />
+    case "lightbulb":
+      return <LightbulbIcon className={className} />
+    case "roles":
+    case "users":
+      return <UsersIcon className={className} />
+    case "megaphone":
+    case "announcement":
+      return <MegaphoneIcon className={className} />
+    default:
+      return <ShieldIcon className={className} />
+  }
 }
 
 function YoutubeIcon({ className }: { className?: string }) {
@@ -182,29 +261,31 @@ export default async function ProyectoSlugPage({
         </div>
       </header>
 
-      {/* Main Content & Architecture */}
+      {/* Main Content */}
       <div className="space-y-10">
         {/* Modules Section */}
         {project.modules && project.modules.length > 0 && (
           <section className="space-y-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground block">
-              // Módulos y Funcionalidades del Bot
-            </span>
-            <div className="grid grid-cols-1 gap-3.5">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+              Funciones principales
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {project.modules.map((mod, idx) => (
                 <div
                   key={idx}
-                  className="rounded-2xl border border-black/10 bg-black/[0.015] p-5 sm:p-6 transition-all hover:border-black/25 hover:bg-black/[0.025]"
+                  className={`rounded-2xl border border-black/[0.08] bg-black/[0.015] p-5 sm:p-6 transition-all duration-200 hover:border-black/20 hover:bg-black/[0.025] ${
+                    idx === 4 ? "sm:col-span-2" : ""
+                  }`}
                 >
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <span className="text-xl" role="img" aria-label={mod.title}>
-                      {mod.icon}
-                    </span>
-                    <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-black/10 bg-white text-foreground shadow-xs">
+                      <ModuleIcon name={mod.icon} className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-sm font-semibold tracking-tight text-foreground">
                       {mod.title}
                     </h3>
                   </div>
-                  <p className="text-sm font-light leading-relaxed text-muted-foreground sm:pl-8">
+                  <p className="text-xs sm:text-sm font-light leading-relaxed text-muted-foreground">
                     {mod.description}
                   </p>
                 </div>
@@ -215,10 +296,10 @@ export default async function ProyectoSlugPage({
 
         {/* Process & Learnings */}
         {project.learnings && (
-          <section className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur-xs p-6 sm:p-7 shadow-xs">
-            <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground block mb-2">
-              // Arquitectura y Aprendizaje Técnico
-            </span>
+          <section className="rounded-2xl border border-black/[0.08] bg-white p-6 sm:p-7 shadow-xs">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-3">
+              Detrás del desarrollo
+            </h2>
             <p className="text-sm sm:text-base font-light leading-relaxed text-foreground/90">
               {project.learnings}
             </p>
@@ -226,27 +307,27 @@ export default async function ProyectoSlugPage({
         )}
 
         {/* Community & Context */}
-        <section className="space-y-4 text-sm sm:text-base font-light leading-relaxed text-muted-foreground">
+        <section className="space-y-3 text-sm font-light leading-relaxed text-muted-foreground">
           <p>
-            Este proyecto es el bot oficial de la comunidad de <strong className="font-semibold text-foreground">SILANTRO LABS</strong>. Toda su arquitectura está diseñada con patrones profesionales, código desacoplado y estructurado para servir tanto como herramienta en producción como recurso educativo abierto para otros desarrolladores.
+            Este bot está pensado como una pieza central para la comunidad de <strong className="font-medium text-foreground">SILANTRO LABS</strong>. Además de resolver la gestión diaria del servidor, el proyecto está completamente documentado y publicado con código abierto para que cualquiera pueda explorar cómo está hecho o usarlo de referencia.
           </p>
           <p>
-            Puedes clonar el repositorio completo desde GitHub para inspeccionar los Cogs, la base de datos asíncrona SQLite y los flujos de interacción. Las series en video con la explicación detallada de cada paso se publicarán próximamente en YouTube y TikTok.
+            El repositorio en GitHub incluye la estructura de archivos, la base de datos y la guía de configuración. Las explicaciones en video se publicarán próximamente en YouTube y TikTok.
           </p>
         </section>
 
         {/* Continuous Improvement Notice */}
         {project.continuousImprovementNotice && (
-          <section className="rounded-2xl border border-black/15 bg-neutral-50/80 p-5 sm:p-6 text-foreground shadow-xs">
+          <section className="rounded-2xl border border-black/[0.08] bg-black/[0.015] p-5 sm:p-6 shadow-xs">
             <div className="flex items-start gap-3.5">
-              <span className="text-2xl mt-0.5" role="img" aria-label="Evolución continua">
-                🔄
-              </span>
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-black/10 bg-white text-foreground shadow-xs mt-0.5">
+                <RefreshIcon className="h-4 w-4" />
+              </div>
               <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground block mb-1">
-                  // Evolución del Proyecto
-                </span>
-                <p className="text-sm sm:text-base font-normal leading-relaxed text-foreground/90">
+                <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-1">
+                  Evolución del bot
+                </h3>
+                <p className="text-sm font-normal leading-relaxed text-foreground/90">
                   {project.continuousImprovementNotice}
                 </p>
               </div>
