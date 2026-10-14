@@ -22,6 +22,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: "https://silantrolabs.com/sitemap.xml",
-    host: "https://silantrolabs.com",
   }
 }

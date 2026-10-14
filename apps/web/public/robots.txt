@@ -14,4 +14,3 @@ Disallow: /_next/
 Disallow: /api/
 
 Sitemap: https://silantrolabs.com/sitemap.xml
-Host: https://silantrolabs.com
