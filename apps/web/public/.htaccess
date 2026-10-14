@@ -1,19 +1,25 @@
+# Deshabilitar exploracion de carpetas
+Options -Indexes
+
+# Establecer index.html como archivo por defecto
+DirectoryIndex index.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Si la peticion es para un archivo o carpeta real, no hacer nada
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
+  # 1. Si el archivo solicitado existe exactamente en el servidor (imagenes, css, js), servirlo directamente
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 
-  # URLs limpias: si existe el archivo .html correspondiente, servirlo
+  # 2. Si la ruta solicitada corresponde a una carpeta con index.html (con o sin slash final)
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*)/?$ $1/index.html [L]
+
+  # 3. Si existe un archivo .html directo
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
   RewriteRule ^(.*)$ $1.html [L]
 
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.*)$ $1.html [L]
-
-  # Pagina 404 personalizada
+  # 4. Pagina 404 personalizada de Next.js
   ErrorDocument 404 /404.html
 </IfModule>
