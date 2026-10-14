@@ -15,6 +15,21 @@ function GithubIcon({ className }: { className?: string }) {
   )
 }
 
+function DiagramIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <path d="M10 6.5h4" />
+      <path d="M6.5 10v4" />
+      <path d="M17.5 10v4" />
+      <path d="M10 17.5h4" />
+    </svg>
+  )
+}
+
 function YoutubeIcon({ className }: { className?: string }) {
   return (
     <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
@@ -60,7 +75,7 @@ export default function ProyectosPage() {
               {/* Status and Date */}
               <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-muted-foreground/80 mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-black/[0.03] px-2 py-0.5 text-[9px] font-mono tracking-widest text-black/80">
-                  <span className="h-1.5 w-1.5 rounded-full bg-black/70 animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" />
                   {project.status || "Completado"}
                 </span>
                 {project.date && <span>{project.date}</span>}
@@ -118,7 +133,19 @@ export default function ProyectosPage() {
                     <GithubIcon className="h-3.5 w-3.5" />
                   </a>
                 )}
-                {project.youtubePlaylistUrl && (
+                {project.diagramUrl && (
+                  <a
+                    href={project.diagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 bg-white/70 text-muted-foreground transition-all hover:border-black hover:bg-black hover:text-white hover:scale-105 active:scale-95"
+                    aria-label="Diagrama en Draw.io"
+                    title="Diagrama de Arquitectura"
+                  >
+                    <DiagramIcon className="h-3.5 w-3.5" />
+                  </a>
+                )}
+                {project.youtubePlaylistUrl ? (
                   <a
                     href={project.youtubePlaylistUrl}
                     target="_blank"
@@ -129,8 +156,16 @@ export default function ProyectosPage() {
                   >
                     <YoutubeIcon className="h-3.5 w-3.5" />
                   </a>
-                )}
-                {project.tiktokPlaylistUrl && (
+                ) : project.youtubeComingSoon ? (
+                  <span
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-dashed border-black/20 bg-black/[0.02] text-muted-foreground/40 cursor-default select-none"
+                    aria-label="Playlist en YouTube (Próximamente)"
+                    title="YouTube (Próximamente)"
+                  >
+                    <YoutubeIcon className="h-3.5 w-3.5 opacity-60" />
+                  </span>
+                ) : null}
+                {project.tiktokPlaylistUrl ? (
                   <a
                     href={project.tiktokPlaylistUrl}
                     target="_blank"
@@ -141,7 +176,15 @@ export default function ProyectosPage() {
                   >
                     <TiktokIcon className="h-3 w-3" />
                   </a>
-                )}
+                ) : project.tiktokComingSoon ? (
+                  <span
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-dashed border-black/20 bg-black/[0.02] text-muted-foreground/40 cursor-default select-none"
+                    aria-label="Serie en TikTok (Próximamente)"
+                    title="TikTok (Próximamente)"
+                  >
+                    <TiktokIcon className="h-3 w-3 opacity-60" />
+                  </span>
+                ) : null}
               </div>
 
               {/* View Full Project Link */}
