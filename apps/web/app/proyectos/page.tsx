@@ -16,6 +16,16 @@ export const metadata = {
   },
 }
 
+function ExternalLinkIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  )
+}
+
 function GithubIcon({ className }: { className?: string }) {
   return (
     <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
@@ -130,6 +140,18 @@ export default function ProyectosPage() {
             <div className="mt-6 pt-4 border-t border-border/60 flex items-center justify-between">
               {/* Media Channel Icons */}
               <div className="flex items-center gap-2">
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 bg-white/70 text-muted-foreground transition-all hover:border-black hover:bg-black hover:text-white hover:scale-105 active:scale-95"
+                    aria-label="Sitio o Demo en Vivo"
+                    title="Sitio o Demo en Vivo"
+                  >
+                    <ExternalLinkIcon className="h-3.5 w-3.5" />
+                  </a>
+                )}
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}

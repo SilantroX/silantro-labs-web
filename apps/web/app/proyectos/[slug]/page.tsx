@@ -122,6 +122,87 @@ function RefreshIcon({ className }: { className?: string }) {
   )
 }
 
+function ExternalLinkIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  )
+}
+
+function CartIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <circle cx="8" cy="21" r="1" />
+      <circle cx="19" cy="21" r="1" />
+      <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+    </svg>
+  )
+}
+
+function BoxIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+      <path d="m3.3 7 8.7 5 8.7-5" />
+      <path d="M12 22V12" />
+    </svg>
+  )
+}
+
+function WalletIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+      <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+    </svg>
+  )
+}
+
+function LockIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  )
+}
+
+function QrIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <path d="M14 14h3v3h-3z" />
+      <path d="M20 14v3h-3" />
+      <path d="M14 20h6" />
+      <path d="M7 7h.01" />
+      <path d="M17 7h.01" />
+      <path d="M7 17h.01" />
+    </svg>
+  )
+}
+
+function TerminalIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <polyline points="4 17 10 11 4 5" />
+      <line x1="12" y1="19" x2="20" y2="19" />
+    </svg>
+  )
+}
+
+function ZapIcon({ className }: { className?: string }) {
+  return (
+    <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  )
+}
+
 function ModuleIcon({ name, className }: { name: string; className?: string }) {
   switch (name) {
     case "shield":
@@ -136,6 +217,20 @@ function ModuleIcon({ name, className }: { name: string; className?: string }) {
     case "megaphone":
     case "announcement":
       return <MegaphoneIcon className={className} />
+    case "cart":
+      return <CartIcon className={className} />
+    case "box":
+      return <BoxIcon className={className} />
+    case "wallet":
+      return <WalletIcon className={className} />
+    case "lock":
+      return <LockIcon className={className} />
+    case "qr":
+      return <QrIcon className={className} />
+    case "terminal":
+      return <TerminalIcon className={className} />
+    case "zap":
+      return <ZapIcon className={className} />
     default:
       return <ShieldIcon className={className} />
   }
@@ -238,14 +333,25 @@ export default async function ProyectoSlugPage({
           ))}
         </div>
 
-        {/* Links to Videos, Architecture and Code */}
+        {/* Links to Videos, Architecture, Demo and Code */}
         <div className="mt-8 flex flex-wrap items-center gap-3">
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-black text-white px-4 py-2 text-xs font-mono uppercase tracking-wider hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 shadow-sm"
+            >
+              <ExternalLinkIcon className="h-3.5 w-3.5" />
+              <span>Probar en Vivo</span>
+            </a>
+          )}
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-black text-white px-4 py-2 text-xs font-mono uppercase tracking-wider hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-mono uppercase tracking-wider hover:border-black hover:bg-black hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xs"
             >
               <GithubIcon className="h-3.5 w-3.5" />
               <span>Ver Código en GitHub</span>
@@ -349,14 +455,23 @@ export default async function ProyectoSlugPage({
         )}
 
         {/* Community & Context */}
-        <section className="space-y-3 text-sm font-light leading-relaxed text-muted-foreground">
-          <p>
-            Este bot está pensado como una pieza central para la comunidad de <strong className="font-medium text-foreground">SILANTRO LABS</strong>. Además de resolver la gestión diaria del servidor, el proyecto está completamente documentado y publicado con código abierto para que cualquiera pueda explorar cómo está hecho o usarlo de referencia.
-          </p>
-          <p>
-            El repositorio en GitHub incluye la estructura de archivos, la base de datos y la guía de configuración. Las explicaciones en video se publicarán próximamente en YouTube y TikTok.
-          </p>
-        </section>
+        {project.contextNotice ? (
+          <section className="space-y-3 text-sm font-light leading-relaxed text-muted-foreground">
+            {Array.isArray(project.contextNotice) ? (
+              project.contextNotice.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))
+            ) : (
+              <p>{project.contextNotice}</p>
+            )}
+          </section>
+        ) : (
+          <section className="space-y-3 text-sm font-light leading-relaxed text-muted-foreground">
+            <p>
+              Este proyecto forma parte del ecosistema de software y experimentación de <strong className="font-medium text-foreground">SILANTRO LABS</strong>. Desarrollado con estándares modernos, foco en la experiencia de usuario y arquitectura mantenible.
+            </p>
+          </section>
+        )}
 
         {/* Continuous Improvement Notice */}
         {project.continuousImprovementNotice && (
@@ -367,7 +482,7 @@ export default async function ProyectoSlugPage({
               </div>
               <div>
                 <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-1">
-                  Evolución del bot
+                  {project.continuousImprovementTitle || "Evolución del proyecto"}
                 </h3>
                 <p className="text-sm font-normal leading-relaxed text-foreground/90">
                   {project.continuousImprovementNotice}

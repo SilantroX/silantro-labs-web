@@ -26,6 +26,8 @@ export type ProjectItem = {
   status?: "Completado" | "En desarrollo" | "Experimento"
   modules?: ProjectModule[]
   continuousImprovementNotice?: string
+  continuousImprovementTitle?: string
+  contextNotice?: string | string[]
 }
 
 export type ArticleItem = {
@@ -76,6 +78,126 @@ export const portfolio: Portfolio = {
       "Desde pequeñas herramientas hasta aplicaciones completas, sin miedo a experimentar.",
   },
   projects: [
+    {
+      title: "Silantro Tools",
+      slug: "silantro-tools",
+      shortDescription:
+        "Suite de micro-herramientas de cómputo local y código abierto. Procesamiento 100% en el navegador con Zero Server Egress (0 bytes transmitidos a servidores), sin rastreadores ni telemetría.",
+      tags: [
+        "Astro",
+        "TypeScript",
+        "Preact",
+        "Tailwind CSS",
+        "Zero Egress",
+        "Web Crypto API",
+        "Cloudflare",
+      ],
+      githubUrl: "https://github.com/SilantroX/SilantroTools",
+      demoUrl: "https://tools.silantrolabs.com",
+      learnings:
+        "Demostramos que la gran mayoría de herramientas web no necesitan enviar los datos del usuario a un servidor. Usando APIs nativas del navegador (FileReader, TypedArray, Web Crypto y el motor V8), logramos herramientas ultrarrápidas con costo $0 de infraestructura y, sobre todo, inmunidad total frente a fugas de datos en backend.",
+      date: "26.10.2026",
+      status: "En desarrollo",
+      modules: [
+        {
+          icon: "qr",
+          title: "Generador de Códigos QR (ISO/IEC 18004)",
+          description:
+            "Codificación óptica local con corrección de error Reed-Solomon en GF(2^8), soporte de logotipos incrustados sin pérdida de lectura y exportación SVG/PNG de alta fidelidad.",
+        },
+        {
+          icon: "terminal",
+          title: "Formateador e Inspector JSON",
+          description:
+            "Validación de esquemas, indentación y visualización en árbol de payloads complejos utilizando directamente el parser nativo V8 del cliente sin registrar logs remotos.",
+        },
+        {
+          icon: "lock",
+          title: "Criptografía y Generador de Claves",
+          description:
+            "Generación de entropía y pares de claves criptoseguras apoyadas en la Web Crypto API sin transmitir contraseñas ni secretos a través de la red.",
+        },
+        {
+          icon: "zap",
+          title: "Conversor Base64 & Binario",
+          description:
+            "Manipulación y conversión de archivos a cadenas Base64 y Data URIs directamente en la memoria volátil a través de TypedArray y FileReader.",
+        },
+        {
+          icon: "shield",
+          title: "Zero Server Egress & Privacidad Radical",
+          description:
+            "Diseño estático puro sin backend ejecutable: la información nunca abandona el dispositivo del usuario, previniendo brechas de seguridad por arquitectura.",
+        },
+      ],
+      continuousImprovementTitle: "Evolución y próximos módulos",
+      continuousImprovementNotice:
+        "El catálogo se expande de manera modular incorporando analizadores semánticos de texto, convertidores tipográficos y micro-herramientas de desarrollo, manteniendo intacto el compromiso de 0 bytes transmitidos.",
+      contextNotice: [
+        "Silantro Tools nace como un manifiesto de soberanía y privacidad digital: la gran mayoría de utilidades online envían datos confidenciales a servidores remotos donde quedan registrados en logs o telemetría. Este proyecto demuestra que una ingeniería responsable puede ejecutar toda la computación en el cliente con cero costo operativo.",
+        "El proyecto es completamente de código abierto bajo licencia MIT y se compila como sitio estático puro (SSG) distribuido globalmente en la red Anycast de Cloudflare Pages.",
+      ],
+    },
+    {
+      title: "Cuadrio",
+      slug: "cuadrio",
+      shortDescription:
+        "SaaS B2B Multi-tenant de gestión comercial: punto de venta (POS) ágil, inventario con Costo Promedio Ponderado (CPP), kardex inmutable, tesorería multicuenta y cartera de fiados con recibos por WhatsApp.",
+      tags: [
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "PostgreSQL",
+        "Drizzle ORM",
+        "React",
+        "Docker",
+        "DevSecOps",
+      ],
+      demoUrl: "https://cuadrio.app",
+      learnings:
+        "La gestión de dinero y stock no tolera suposiciones: implementamos bloqueos pesimistas (SELECT FOR UPDATE) en PostgreSQL para impedir condiciones de carrera. Además, sometimos la plataforma a una rigurosa auditoría de 20 puntos, remediando XSS almacenados en la consola maestra, CORS reflexivos y verificando revocaciones en tiempo real para sesiones JWT.",
+      date: "24.10.2026",
+      status: "En desarrollo",
+      modules: [
+        {
+          icon: "cart",
+          title: "Punto de Venta (POS) & Recibos WhatsApp",
+          description:
+            "Registro ágil de ventas en mostrador (contado, crédito o abonos parciales) con despacho inmediato de recibos de compra e información de saldo por WhatsApp.",
+        },
+        {
+          icon: "box",
+          title: "Inventario & Kardex Inmutable (CPP)",
+          description:
+            "Control estricto de existencias con cálculo automático de Costo Promedio Ponderado en tiempo real, trazabilidad histórica y protección de stock.",
+        },
+        {
+          icon: "wallet",
+          title: "Tesorería Multicuenta en Vivo",
+          description:
+            "Conciliación en tiempo real entre el dinero en efectivo en caja física y saldos en cuentas bancarias o billeteras digitales (Nequi, Daviplata) mediante libros auxiliares inmutables.",
+        },
+        {
+          icon: "users",
+          title: "Cartera & Control de Fiados",
+          description:
+            "Administración ordenada de cuentas por cobrar, abonos parciales y estados de cuenta automáticos para clientes de confianza sin fricción contable.",
+        },
+        {
+          icon: "shield",
+          title: "Aislamiento Multi-Tenant & DevSecOps",
+          description:
+            "Blindaje estricto por business_id a nivel de consulta SQL, hashing Argon2id, cookies HttpOnly seguras y remediación integral de 20 hallazgos de seguridad.",
+        },
+      ],
+      continuousImprovementTitle: "Evolución y estado operativo",
+      continuousImprovementNotice:
+        "Actualmente en fase beta privada activa con comerciantes reales, optimizando el rendimiento de consultas agregadas, endureciendo políticas de red perimetral y adaptando la experiencia para terminales móviles y tablets.",
+      contextNotice: [
+        "Cuadrio es una plataforma diseñada desde cero para digitalizar comercios de mostrador que necesitan rapidez absoluta sin sacrificar el rigor contable ni la seguridad de sus datos financieros.",
+        "Bajo una arquitectura de Único Origen (Single-Origin Architecture) en Node.js y React, cada comercio cuenta con aislamiento estricto de datos, trazabilidad inmutable de dinero e inventario, y protección contra ataques web modernos.",
+      ],
+    },
     {
       title: "Bot de Discord para SILANTRO LABS",
       slug: "bot-discord-python-silantro-labs",
@@ -129,17 +251,34 @@ export const portfolio: Portfolio = {
             "Herramienta interna para redactar comunicados con vista previa de confirmación antes de lanzarlos al canal general, evitando equivocaciones.",
         },
       ],
+      continuousImprovementTitle: "Evolución del bot",
       continuousImprovementNotice:
         "Este bot se irá mejorando continuamente con nuevas funciones, ajustes y herramientas adicionales según las necesidades de la comunidad.",
+      contextNotice: [
+        "Este bot está pensado como una pieza central para la comunidad de SILANTRO LABS. Además de resolver la gestión diaria del servidor, el proyecto está completamente documentado y publicado con código abierto para que cualquiera pueda explorar cómo está hecho o usarlo de referencia.",
+        "El repositorio en GitHub incluye la estructura de archivos, la base de datos y la guía de configuración. Las explicaciones en video se publicarán próximamente en YouTube y TikTok.",
+      ],
     },
   ],
   articles: [
+    {
+      title:
+        "Seguridad en la era de la IA: Lecciones de Cuadrio, Silantro Tools y la avalancha de vulnerabilidades en Node.js",
+      date: "26.10.2026",
+      slug: "seguridad-desarrollo-era-ia-cuadrio-silantrotools",
+      tag: "Ingeniería & Seguridad",
+      excerpt:
+        "La IA nos permite programar a una velocidad sin precedentes, pero el código rápido sin criterio técnico es una trampa. Analizamos las recientes vulnerabilidades críticas de Node.js, nuestra auditoría de 20 puntos en Cuadrio y por qué diseñamos Silantro Tools con Zero Server Egress.",
+      mobileExcerpt:
+        "Peligros de la IA, vulnerabilidades en Node.js y lecciones construyendo Cuadrio y Silantro Tools.",
+    },
     {
       title: "El comienzo de SILANTRO LABS",
       date: "07.10.2026",
       slug: "el-comienzo-de-silantro-labs",
       tag: "Publicación 01",
-      excerpt: "Detrás de Silantro estoy yo: Miguel. Esta es la historia de cómo pasé de 'hackear' juegos a los 15 años a crear mi propio laboratorio de software.",
+      excerpt:
+        "Detrás de Silantro estoy yo: Miguel. Esta es la historia de cómo pasé de 'hackear' juegos a los 15 años a crear mi propio laboratorio de software.",
       mobileExcerpt: "De hackear juegos a crear este laboratorio de software.",
     },
   ],
