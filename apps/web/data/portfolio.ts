@@ -153,7 +153,7 @@ export const portfolio: Portfolio = {
         "Docker",
         "DevSecOps",
       ],
-      demoUrl: "https://cuadrio.app",
+      demoUrl: "https://cuadrio.silantrolabs.com",
       learnings:
         "La gestión de dinero y stock en el comercio real exige tolerancia cero a inconsistencias: la integridad transaccional y la sincronización de caja requieren diseño defensivo desde la base de datos hasta la interfaz. Construir una plataforma multi-tenant sólida nos enseñó que la seguridad y el aislamiento de datos no son un añadido posterior, sino un pilar arquitectónico que se valida continuamente.",
       date: "24.10.2026",
