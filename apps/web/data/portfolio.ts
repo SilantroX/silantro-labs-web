@@ -155,7 +155,7 @@ export const portfolio: Portfolio = {
       ],
       demoUrl: "https://cuadrio.app",
       learnings:
-        "La gestión de dinero y stock no tolera suposiciones: implementamos bloqueos pesimistas (SELECT FOR UPDATE) en PostgreSQL para impedir condiciones de carrera. Además, sometimos la plataforma a una rigurosa auditoría de 20 puntos, remediando XSS almacenados en la consola maestra, CORS reflexivos y verificando revocaciones en tiempo real para sesiones JWT.",
+        "La gestión de dinero y stock en el comercio real exige tolerancia cero a inconsistencias: la integridad transaccional y la sincronización de caja requieren diseño defensivo desde la base de datos hasta la interfaz. Construir una plataforma multi-tenant sólida nos enseñó que la seguridad y el aislamiento de datos no son un añadido posterior, sino un pilar arquitectónico que se valida continuamente.",
       date: "24.10.2026",
       status: "En desarrollo",
       modules: [
@@ -185,17 +185,17 @@ export const portfolio: Portfolio = {
         },
         {
           icon: "shield",
-          title: "Aislamiento Multi-Tenant & DevSecOps",
+          title: "Seguridad y Confiabilidad Empresarial",
           description:
-            "Blindaje estricto por business_id a nivel de consulta SQL, hashing Argon2id, cookies HttpOnly seguras y remediación integral de 20 hallazgos de seguridad.",
+            "Aislamiento estricto de datos por comercio, cifrado robusto de credenciales, comunicaciones seguras y políticas continuas de DevSecOps para proteger la información operativa.",
         },
       ],
       continuousImprovementTitle: "Evolución y estado operativo",
       continuousImprovementNotice:
-        "Actualmente en fase beta privada activa con comerciantes reales, optimizando el rendimiento de consultas agregadas, endureciendo políticas de red perimetral y adaptando la experiencia para terminales móviles y tablets.",
+        "Actualmente en fase beta privada activa con comercios seleccionados, optimizando la agilidad de respuesta en mostrador, el análisis de rendimiento financiero y adaptando la experiencia para terminales móviles y tablets.",
       contextNotice: [
-        "Cuadrio es una plataforma diseñada desde cero para digitalizar comercios de mostrador que necesitan rapidez absoluta sin sacrificar el rigor contable ni la seguridad de sus datos financieros.",
-        "Bajo una arquitectura de Único Origen (Single-Origin Architecture) en Node.js y React, cada comercio cuenta con aislamiento estricto de datos, trazabilidad inmutable de dinero e inventario, y protección contra ataques web modernos.",
+        "Cuadrio es una plataforma diseñada desde cero para digitalizar comercios de mostrador que necesitan rapidez absoluta sin sacrificar el rigor contable ni la privacidad de sus datos financieros.",
+        "Bajo una arquitectura moderna y robusta, cada comercio cuenta con aislamiento estricto de información, trazabilidad inmutable de operaciones y altos estándares de confiabilidad para el día a día del negocio.",
       ],
     },
     {
@@ -268,7 +268,7 @@ export const portfolio: Portfolio = {
       slug: "seguridad-desarrollo-era-ia-cuadrio-silantrotools",
       tag: "Ingeniería & Seguridad",
       excerpt:
-        "La IA nos permite programar a una velocidad sin precedentes, pero el código rápido sin criterio técnico es una trampa. Analizamos las recientes vulnerabilidades críticas de Node.js, nuestra auditoría de 20 puntos en Cuadrio y por qué diseñamos Silantro Tools con Zero Server Egress.",
+        "La IA nos permite programar a una velocidad sin precedentes, pero el código rápido sin criterio técnico es una trampa. Analizamos las recientes vulnerabilidades críticas de Node.js, los desafíos de blindar una plataforma comercial como Cuadrio y por qué diseñamos Silantro Tools bajo el principio de Zero Server Egress.",
       mobileExcerpt:
         "Peligros de la IA, vulnerabilidades en Node.js y lecciones construyendo Cuadrio y Silantro Tools.",
     },
