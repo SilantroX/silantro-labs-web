@@ -39,7 +39,7 @@ export function AdSlot({
   const pushedRef = useRef(false)
 
   const activeClientId =
-    clientId || process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-XXXXXXXXXXXXXXXX"
+    clientId || process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-1982658636778600"
 
   const isConfigured = Boolean(
     activeClientId &&

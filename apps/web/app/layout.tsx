@@ -165,17 +165,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="relative flex min-h-svh flex-col bg-white text-black dark:bg-white dark:text-black transition-colors duration-300">
         {/* Google AdSense */}
-        <Script
+        <script
           async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${
-            process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-XXXXXXXXXXXXXXXX"
-          }`}
-          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982658636778600"
           crossOrigin="anonymous"
         />
+      </head>
+      <body className="relative flex min-h-svh flex-col bg-white text-black dark:bg-white dark:text-black transition-colors duration-300">
         <ThemeProvider>
           <AmbientParticles />
           <Nav />
