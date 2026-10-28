@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { getAllPosts } from "@/lib/mdx"
+import { AdSlot } from "@/components/ad-slot"
 
 export const metadata = {
   title: "Artículos — SILANTRO LABS",
@@ -47,34 +48,51 @@ export default function ArticulosPage() {
       </div>
 
       <div className="flex flex-col gap-4">
-        {posts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/articulos/${post.slug}`}
-            className="glass group flex flex-col justify-between rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5"
-          >
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
-                <time>{formatDate(String(post.date))}</time>
-                <span>{typeof post.tag === "string" ? post.tag : "PUBLICACIÓN"}</span>
+        {posts.map((post, idx) => (
+          <div key={post.slug} className="contents">
+            <Link
+              href={`/articulos/${post.slug}`}
+              className="glass group flex flex-col justify-between rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5"
+            >
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
+                  <time>{formatDate(String(post.date))}</time>
+                  <span>{typeof post.tag === "string" ? post.tag : "PUBLICACIÓN"}</span>
+                </div>
+                <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl transition-colors group-hover:text-foreground/80">
+                  {post.title}
+                </h2>
+                {typeof post.excerpt === "string" && (
+                  <p className="mt-1 text-sm font-light leading-relaxed text-muted-foreground sm:text-base">
+                    {post.excerpt}
+                  </p>
+                )}
               </div>
-              <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl transition-colors group-hover:text-foreground/80">
-                {post.title}
-              </h2>
-              {typeof post.excerpt === "string" && (
-                <p className="mt-1 text-sm font-light leading-relaxed text-muted-foreground sm:text-base">
-                  {post.excerpt}
-                </p>
-              )}
-            </div>
 
-            <div className="mt-6 flex items-center justify-between pt-4 border-t border-border/50 text-[11px] font-mono uppercase tracking-widest text-muted-foreground/70">
-              <span>LEER ARTÍCULO</span>
-              <span className="text-sm transition-transform duration-200 group-hover:translate-x-1">→</span>
-            </div>
-          </Link>
+              <div className="mt-6 flex items-center justify-between pt-4 border-t border-border/50 text-[11px] font-mono uppercase tracking-widest text-muted-foreground/70">
+                <span>LEER ARTÍCULO</span>
+                <span className="text-sm transition-transform duration-200 group-hover:translate-x-1">→</span>
+              </div>
+            </Link>
+
+            {/* Inserción publicitaria entre artículos cuando el catálogo crece */}
+            {posts.length >= 3 && idx === 1 && (
+              <AdSlot
+                format="horizontal"
+                slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICULOS_FEED || "articulos-feed-mid"}
+                className="my-3"
+              />
+            )}
+          </div>
         ))}
       </div>
+
+      {/* Espacio publicitario al pie de la sección de artículos */}
+      <AdSlot
+        format="horizontal"
+        slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICULOS_FEED || "articulos-feed-bottom"}
+        className="mt-10"
+      />
     </div>
   )
 }

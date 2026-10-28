@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { portfolio } from "@/data/portfolio"
+import { AdSlot } from "@/components/ad-slot"
 
 export function generateStaticParams() {
   return portfolio.projects.map((p) => ({ slug: p.slug }))
@@ -491,6 +492,13 @@ export default async function ProyectoSlugPage({
             </div>
           </section>
         )}
+
+        {/* Espacio publicitario dentro del proyecto */}
+        <AdSlot
+          format="horizontal"
+          slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_PROYECTO_DETAIL || "proyecto-detail-bottom"}
+          className="mt-6"
+        />
       </div>
     </article>
   </div>

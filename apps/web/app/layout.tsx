@@ -167,6 +167,15 @@ export default function RootLayout({
         />
       </head>
       <body className="relative flex min-h-svh flex-col bg-white text-black dark:bg-white dark:text-black transition-colors duration-300">
+        {/* Google AdSense */}
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${
+            process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-XXXXXXXXXXXXXXXX"
+          }`}
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <ThemeProvider>
           <AmbientParticles />
           <Nav />

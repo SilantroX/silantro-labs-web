@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { getPostBySlug, getAllSlugs } from "@/lib/mdx"
+import { AdSlot } from "@/components/ad-slot"
 
 export function generateStaticParams() {
   const slugs = getAllSlugs("articulos").length > 0 ? getAllSlugs("articulos") : getAllSlugs("blog")
@@ -141,6 +142,13 @@ export default async function ArticuloSlugPage({
           <div className="prose prose-neutral max-w-none text-foreground/90 prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4 prose-p:text-[17px] sm:prose-p:text-[18px] prose-p:leading-[1.8] sm:prose-p:leading-[1.85] prose-p:font-light prose-p:text-foreground/90 prose-p:my-5 sm:prose-p:my-6 prose-ul:my-5 sm:prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6 prose-li:text-[17px] sm:prose-li:text-[18px] prose-li:leading-[1.8] sm:prose-li:leading-[1.85] prose-li:font-light prose-li:text-foreground/90 prose-li:my-1.5 marker:text-foreground/70 prose-strong:font-semibold prose-strong:text-foreground prose-hr:border-border/60 prose-hr:my-10">
             <MDXRemote source={cleanContent} />
           </div>
+
+          {/* Espacio publicitario dentro del artículo */}
+          <AdSlot
+            format="in-article"
+            slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICULO_BOTTOM || "articulo-slug-bottom"}
+            className="my-10"
+          />
 
           <div className="mt-14 pt-8 border-t border-border/50 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">
             <span>SILANTRO LABS</span>
