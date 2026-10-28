@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { portfolio } from "@/data/portfolio"
 import { AdSlot } from "@/components/ad-slot"
+import { ADS_CONFIG } from "@/lib/ads-config"
 
 export const metadata = {
   title: "Proyectos — SILANTRO LABS",
@@ -232,10 +233,11 @@ export default function ProyectosPage() {
         ))}
       </div>
 
-      {/* Espacio publicitario en catálogo de proyectos */}
+      {/* Espacio publicitario manual al pie del catálogo de proyectos */}
       <AdSlot
         format="horizontal"
-        slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_PROYECTOS_FEED || "proyectos-catalog-bottom"}
+        slotName="Catálogo de Proyectos (Inferior)"
+        slotId={ADS_CONFIG.slots.proyectosCatalog}
         className="mt-12"
       />
     </div>

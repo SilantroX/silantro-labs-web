@@ -8,18 +8,23 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
-  # 1. Si el archivo solicitado existe exactamente en el servidor (imagenes, css, js), servirlo directamente
-  RewriteCond %{REQUEST_FILENAME} -f
+  # 1. Si el archivo o directorio solicitado existe fisicamente en el servidor, servirlo directamente
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # 2. Si la ruta solicitada corresponde a una carpeta con index.html (con o sin slash final)
+  # 2. Evitar bucles de reescritura interna en servidores LiteSpeed / Apache
+  RewriteCond %{ENV:REDIRECT_STATUS} !^$
+  RewriteRule ^ - [L]
+
+  # 3. Si la ruta solicitada corresponde a una carpeta con index.html (sin trailing slash)
   RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
   RewriteRule ^(.*)/?$ $1/index.html [L]
 
-  # 3. Si existe un archivo .html directo
+  # 4. Si existe un archivo .html directo
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
   RewriteRule ^(.*)$ $1.html [L]
 
-  # 4. Pagina 404 personalizada de Next.js
+  # 5. Pagina 404 personalizada de Next.js
   ErrorDocument 404 /404.html
 </IfModule>

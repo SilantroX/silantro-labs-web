@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getAllPosts } from "@/lib/mdx"
 import { AdSlot } from "@/components/ad-slot"
+import { ADS_CONFIG } from "@/lib/ads-config"
 
 export const metadata = {
   title: "Artículos — SILANTRO LABS",
@@ -79,7 +80,8 @@ export default function ArticulosPage() {
             {posts.length >= 3 && idx === 1 && (
               <AdSlot
                 format="horizontal"
-                slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICULOS_FEED || "articulos-feed-mid"}
+                slotName="Artículos Feed (Intermedio)"
+                slotId={ADS_CONFIG.slots.articulosFeed}
                 className="my-3"
               />
             )}
@@ -87,10 +89,11 @@ export default function ArticulosPage() {
         ))}
       </div>
 
-      {/* Espacio publicitario al pie de la sección de artículos */}
+      {/* Espacio publicitario manual al pie de la sección de artículos */}
       <AdSlot
         format="horizontal"
-        slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICULOS_FEED || "articulos-feed-bottom"}
+        slotName="Catálogo de Artículos (Inferior)"
+        slotId={ADS_CONFIG.slots.articulosFeed}
         className="mt-10"
       />
     </div>

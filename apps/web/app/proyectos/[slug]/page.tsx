@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { portfolio } from "@/data/portfolio"
 import { AdSlot } from "@/components/ad-slot"
+import { ADS_CONFIG } from "@/lib/ads-config"
 
 export function generateStaticParams() {
   return portfolio.projects.map((p) => ({ slug: p.slug }))
@@ -493,10 +494,11 @@ export default async function ProyectoSlugPage({
           </section>
         )}
 
-        {/* Espacio publicitario dentro del proyecto */}
+        {/* Espacio publicitario manual al final de la ficha del proyecto */}
         <AdSlot
           format="horizontal"
-          slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_PROYECTO_DETAIL || "proyecto-detail-bottom"}
+          slotName="Ficha de Proyecto (Inferior)"
+          slotId={ADS_CONFIG.slots.proyectoDetail}
           className="mt-6"
         />
       </div>

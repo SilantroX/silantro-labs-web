@@ -13,13 +13,14 @@ export type AdFormat = "horizontal" | "leaderboard" | "rectangle" | "in-article"
 
 interface AdSlotProps {
   slotId?: string
+  slotName?: string
   format?: AdFormat
   className?: string
   label?: boolean
   clientId?: string
 }
 
-// Strict height & width definitions guaranteeing Zero Cumulative Layout Shift (CLS = 0)
+// Dimensiones fijas mínimas para garantizar CLS = 0 (Cumulative Layout Shift)
 const FORMAT_CLASSES: Record<AdFormat, string> = {
   horizontal: "min-h-[100px] sm:min-h-[120px] w-full max-w-4xl",
   leaderboard: "min-h-[90px] w-full max-w-[728px]",
@@ -29,7 +30,8 @@ const FORMAT_CLASSES: Record<AdFormat, string> = {
 }
 
 export function AdSlot({
-  slotId = "default-slot",
+  slotId,
+  slotName,
   format = "horizontal",
   className,
   label = true,
@@ -41,11 +43,14 @@ export function AdSlot({
   const activeClientId =
     clientId || process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-1982658636778600"
 
+  // Google AdSense exige un número entero de 8 a 16 dígitos para bloques manuales (data-ad-slot)
+  const cleanSlotId = slotId?.trim()
+  const isNumericSlot = Boolean(cleanSlotId && /^\d{8,16}$/.test(cleanSlotId))
+
   const isConfigured = Boolean(
     activeClientId &&
     activeClientId !== "ca-pub-XXXXXXXXXXXXXXXX" &&
-    slotId &&
-    slotId !== "default-slot"
+    isNumericSlot
   )
 
   useEffect(() => {
@@ -89,7 +94,7 @@ export function AdSlot({
             className="adsbygoogle block w-full"
             style={{ display: "block" }}
             data-ad-client={activeClientId}
-            data-ad-slot={slotId}
+            data-ad-slot={cleanSlotId}
             data-ad-format={format === "rectangle" ? "rectangle" : "auto"}
             data-full-width-responsive="true"
           />
@@ -98,17 +103,17 @@ export function AdSlot({
             <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-black/40 animate-pulse" />
               <span className="tracking-wider uppercase font-medium text-foreground/80">
-                [ Espacio Publicitario AdSense ]
+                [ Bloque Manual: {slotName || "AdSense"} ]
               </span>
             </div>
             <span className="text-[10px] text-muted-foreground/60">
-              Formato: {format} · Zero Layout Shift (CLS = 0)
+              Formato: {format} · Ubicación manual fija · CLS = 0
             </span>
-            {slotId && slotId !== "default-slot" && (
-              <span className="text-[9px] text-muted-foreground/40">
-                Slot: {slotId}
-              </span>
-            )}
+            <span className="text-[9px] text-muted-foreground/45 mt-0.5">
+              {cleanSlotId && !isNumericSlot
+                ? `Identificador pendiente (${cleanSlotId}): asigna el ID numérico de bloque de AdSense`
+                : "Listo para recibir data-ad-slot de tu panel de AdSense"}
+            </span>
           </div>
         )}
       </div>

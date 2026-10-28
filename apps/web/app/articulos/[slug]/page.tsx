@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { getPostBySlug, getAllSlugs } from "@/lib/mdx"
 import { AdSlot } from "@/components/ad-slot"
+import { ADS_CONFIG } from "@/lib/ads-config"
 
 export function generateStaticParams() {
   const slugs = getAllSlugs("articulos").length > 0 ? getAllSlugs("articulos") : getAllSlugs("blog")
@@ -143,10 +144,11 @@ export default async function ArticuloSlugPage({
             <MDXRemote source={cleanContent} />
           </div>
 
-          {/* Espacio publicitario dentro del artículo */}
+          {/* Espacio publicitario manual al final del artículo */}
           <AdSlot
             format="in-article"
-            slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICULO_BOTTOM || "articulo-slug-bottom"}
+            slotName="Lectura de Artículo (Final)"
+            slotId={ADS_CONFIG.slots.articuloBottom}
             className="my-10"
           />
 
