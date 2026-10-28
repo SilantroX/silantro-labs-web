@@ -156,3 +156,8 @@
 .bento-tile {
   animation: bento-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+/* Google AdSense: Colapsar espacios vacíos o no servidos */
+ins.adsbygoogle[data-ad-status="unfilled"],
+.ad-slot-container:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none !important;
+}
